@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moje domovská stránka</title>
+  <link rel="shortcut icon" href="i.ico">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #151a2e;
+      --accent: #6aa6ff;
+      --text: #e8ecf1;
+      --muted: #9aa3b2;
+      --radius: 16px;
+    }
+    body[data-theme="light"] {
+      --bg: #f4f6fb;
+      --panel: #ffffff;
+      --accent: #0066ff;
+      --text: #0a0a0a;
+      --muted: #555;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 1200px at 50% -200px, #1a2344 0%, var(--bg) 60%);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text);
+      padding: 16px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: background 0.3s ease;
+    }
+    .card {
+      max-width: 1400px;
+      width: 95%;
+      margin: 20px auto 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      padding: 20px;
+      transition: background 0.3s ease;
+    }
+    .title {
+      text-align: center;
+      font-weight: 700;
+      margin: 0 0 14px;
+      font-size: clamp(20px, 3vw, 28px);
+    }
+    form {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    select, input[type="text"], button {
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--panel);
+      color: var(--text);
+      font-size: 16px;
+      padding: 0 14px;
+      outline: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    select { cursor: pointer; }
+    input[type="text"]::placeholder { color: var(--muted); }
+    button {
+      padding: 0 18px;
+      font-weight: 600;
+      background: linear-gradient(180deg, #7db0ff, #4f86ff);
+      color: #0a1228;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.05s ease, filter 0.2s ease;
+    }
+    button:active { transform: translateY(1px); }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .links figure {
+      margin: 0;
+      text-align: center;
+    }
+    .links img {
+      width: 100px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .links figcaption {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--text);
+    }
+	.links1 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .links1 figure {
+      margin: 0;
+      text-align: center;
+    }
+	@media (max-width: 640px) {
+      .links img {
+        width: 50px;
+      }
+    }
+    .links1 img {
+	  flex: 1 1 100px;
+      max-width: 95%;
+	  width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .links1 figcaption {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--text);
+    }
+	@media (max-width: 640px) {
+      .links1 img {
+        width: 150px;
+      }
+    }
+    .weather {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .weather img {
+      max-width: 95%;
+      width: 1000px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .hint {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+    hr {
+      border: none;
+      height: 2px;
+      background: var(--accent);
+      margin: 10px 0;
+    }
+    @media (max-width: 1000px) {
+      form { grid-template-columns: 1fr; }
+      button { height: 52px; }
+      .weather img { width: 100%; }
+    }
+    /* Grid pro tmep.cz */
+    .tmep-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin: 0px auto 30px;
+      max-width: 1400px;
+      width: 95%;
+	  box-sizing: border-box;
+    }
+    .card.tmep {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+	  width: auto;
+	  max-width: 100%;
+	  min-height: auto;
+	  padding: 16px;
+	  box-sizing: border-box;
+    }
+    .card.tmep h2,
+    .card.tmep p {
+      margin: 4px 0;
+    }
+    .muted { color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="theme-toggle" id="themeToggle">🌙</div>
+  <div class="card">
+    <h1 class="title">Vítejte</h1>
+    <form id="searchForm" autocomplete="off">
+      <select id="engine" name="engine">
+        <option value="google" selected>Google</option>
+        <option value="seznam">Seznam</option>
+        <option value="mapycom">Mapy.com</option>
+        <option value="gmaps">Google Maps</option>
+      </select>
+      <input id="q" name="q" type="text" placeholder="Zadejte, co chcete najít…" required />
+      <button type="submit">Hledat</button>
+    </form>
+    <p class="hint">Vyberte vyhledávač (myší nebo šipkami ↑↓) a napište dotaz.</p>
+    <hr>
+    <div class="links">
+      <figure><a href="https://bezpecnost.csas.cz/flfe/?client_id=georgeclient_cz"><img src="george.jpg" alt="george"></a><figcaption>George</figcaption></figure>
+      <figure><a href="https://ib.csob.cz/prihlaseni"><img src="csob.jpg" alt="csob"></a><figcaption>ČSOB</figcaption></figure>
+      <figure><a href="https://coinmate.io/cs"><img src="coinmate.jpg" alt="coinmate"></a><figcaption>Coinmate.io</figcaption></figure>
+      <figure><a href="https://stosuj.cz/"><img src="stosuj.jpg" alt="stosuj"></a><figcaption>Štosuj.cz</figcaption></figure>
+      <figure><a href="https://www.webmium.com/cs-cz/prihlasit"><img src="webmium.jpg" alt="webmium"></a><figcaption>Webmium přihlásit</figcaption></figure>
+	  <figure><a href="https://www.ceskenoviny.cz/"><img src="ctk.jpg" alt="ctk"></a><figcaption>ČTK</figcaption></figure>
+    </div>
+	<hr>
+	<div class="links">
+      <figure><a href="https://go.microsoft.com/fwlink/p?linkid=2325528&clcid=0x405&culture=cs-cz&country=cz"><img src="copilot.jpg" alt="Copilot"></a><figcaption>Copilot</figcaption></figure>
+      <figure><a href="https://chatgpt.com/"><img src="chatgpt.jpg" alt="chatgpt"></a><figcaption>ChatGPT</figcaption></figure>
+      <figure><a href="https://gemini.google.com/app?hl=cs"><img src="gemini.jpg" alt="gemini"></a><figcaption>Google Gemini</figcaption></figure>
+	  <figure><a href="https://notebooklm.google.com/"><img src="notebooklm.png" alt="notebooklm"></a><figcaption>NotebookLM</figcaption></figure>
+    </div>
+	<hr>
+    <div class="links">
+      <figure><a href="https://mujdelirest.cz/CS/auth/login"><img src="mujdelirest.jpg" alt="mujdelirest"></a><figcaption>Můj Delirest</figcaption></figure>
+      <figure><a href="https://zatas.sharepoint.com/sites/ZATpoint"><img src="zat.jpg" alt="zatpoint"></a><figcaption>ZAT Point</figcaption></figure>
+      <figure><a href="https://swnastroj.zat.cz/WebDukovany/WebPrihlaseni"><img src="zat.jpg" alt="NULU"></a><figcaption>NU/LU</figcaption></figure>
+      <figure><a href="https://vyvoj.zat.lan/"><img src="vyvojzatlan.jpg" alt="vyvojzatlan"></a><figcaption>Vývoj.zat</figcaption></figure>
+      <figure><a href="https://gitlab.zat.cz/"><img src="gitlabzat.jpg" alt="gitlabzat"></a><figcaption>GitLab.zat</figcaption></figure>
+      <figure><a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/start"><img src="ifscloud.jpg" alt="ifscloud"></a><figcaption>IFS Cloud</figcaption></figure>
+      <figure><a href="https://soika.zat.lan/Account/Login/?ReturnUrl=%2F"><img src="soika.jpg" alt="soika"></a><figcaption>Soika</figcaption></figure>
+      <figure><a href="https://defshare.zat.cz/"><img src="defshare.jpg" alt="defshare"></a><figcaption>DEFShare</figcaption></figure>
+      <figure><a href="https://spo2018.skoda-js.cz/eduspoweb/"><img src="sjsnesoulady.jpg" alt="sjsnesoulady"></a><figcaption>ŠJS nesoulady</figcaption></figure>
+    </div>
+    <hr>
+    <!-- Data z tmep.cz -->
+    <div id="dataBox" class="tmep-container">
+      <a href="https://pm01.tmep.cz/" target="_blank" class="card tmep" id="box1">Načítám data…</a>
+      <a href="https://pm02.tmep.cz/" target="_blank" class="card tmep" id="box2">Načítám data…</a>
+      <a href="https://pm03.tmep.cz/" target="_blank" class="card tmep" id="box3">Načítám data…</a>
+    </div>
+
+    <div class="weather">
+      <a href="https://www.chmi.cz/files/portal/docs/poboc/OS/KW/Captor/tmp/DMULTI-C1ROZM01.gif" target="_blank">
+        <img src="https://www.chmi.cz/files/portal/docs/poboc/OS/KW/Captor/tmp/DMULTI-C1ROZM01.gif" alt="Meteostanice_Rozmital">
+      </a>
+    </div>
+    <div class="links1" style="margin-top:20px;">
+      <figure><a href="https://www.slunecno.cz/mista/rozmital-pod-tremsinem-334"><img src="http://www.slunecno.cz/predpoved-na-web.php?m=334&amp;v=2" alt="Počasí radar" /></a><figcaption>Rožmitál pod Třemšínem</figcaption></figure>
+      <figure><a href="https://www.slunecno.cz/mista/pribram-99"><img src="http://www.slunecno.cz/predpoved-na-web.php?m=99&amp;v=2" alt="Počasí Příbram" /></a><figcaption>Příbram</figcaption></figure>
+      <figure><a href="https://www.slunecno.cz/mista/dukovany-5008"><img src="http://www.slunecno.cz/predpoved-na-web.php?m=5008&amp;v=2" alt="Počasí Dukovany" /></a><figcaption>Dukovany</figcaption></figure>
+      <figure><a href="https://www.slunecno.cz/mista/opatovice-nad-labem-686"><img src="http://www.slunecno.cz/predpoved-na-web.php?m=686&amp;v=2" alt="Počasí Opatovice" /></a><figcaption>Opatovice nad labem</figcaption></figure>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const form = document.getElementById('searchForm');
+      const qInput = document.getElementById('q');
+      const engine = document.getElementById('engine');
+      const engines = {
+        google: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`,
+        seznam: q => `https://search.seznam.cz/?q=${encodeURIComponent(q)}`,
+        mapycom: q => `https://www.mapy.com/search?q=${encodeURIComponent(q)}`,
+        gmaps:  q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`,
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = qInput.value.trim();
+        if (!q) { qInput.focus(); return; }
+        const makeUrl = engines[engine.value] || engines.google;
+        window.location.href = makeUrl(q);
+      });
+
+      qInput.addEventListener('keydown', (e) => {
+        if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+          e.preventDefault();
+          const options = Array.from(engine.options);
+          let idx = engine.selectedIndex;
+          if (e.key === "ArrowUp") {
+            idx = (idx - 1 + options.length) % options.length;
+          } else if (e.key === "ArrowDown") {
+            idx = (idx + 1) % options.length;
+          }
+          engine.selectedIndex = idx;
+        }
+      });
+
+      const toggle = document.getElementById('themeToggle');
+      const body = document.body;
+      toggle.addEventListener('click', () => {
+        const isDark = body.getAttribute('data-theme') === 'dark';
+        body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+      });
+
+      qInput.focus();
+
+      // --- Data z tmep.cz ---
+      const urls = [
+        "https://tmep.cz/vystup-json.php?id=3102&export_key=c30kqfn6ru&extended=1",
+        "https://tmep.cz/vystup-json.php?id=3099&export_key=mgvqdwt6zr&extended=1",
+        "https://tmep.cz/vystup-json.php?id=3148&export_key=7v9ktoiwnc&extended=1"
+      ];
+
+      function escapeHtml(s){
+        return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+      }
+
+      async function loadOne(url, targetId){
+        try{
+          const res = await fetch(url);
+          if(!res.ok) throw new Error("HTTP " + res.status);
+          const json = await res.json();
+
+          const obsah = `
+            <h2>${escapeHtml(json.nadpis||'–')}</h2>
+            <p><strong>Místo:</strong> ${escapeHtml(json.umisteni||'–')}</p>
+            <p><strong>Čas:</strong> ${escapeHtml(json.cas||'–')}</p>
+            <p><strong>Teplota:</strong> ${json.teplota ?? '–'} ${json.teplota_jednotka||''}</p>
+            <p><strong>Vlhkost:</strong> ${json.vlhkost ?? '–'} ${json.vlhkost_jednotka||''}</p>
+			<p><strong>Nejnižší teplota:</strong> ${json.nejnizsiTeplota ?? '–'} ${json.teplota_jednotka||''}</p>
+            <p><strong>Nejvyšší teplota:</strong> ${json.nejvyssiTeplota ?? '–'} ${json.teplota_jednotka||''}</p>
+            <p><strong>Nejnižší vlhkost:</strong> ${json.nejnizsiVlhkost ?? '–'} ${json.vlhkost_jednotka||''}</p>
+            <p><strong>Nejvyšší vlhkost:</strong> ${json.nejvyssiVlhkost ?? '–'} ${json.vlhkost_jednotka||''}</p>
+          `;
+
+          document.getElementById(targetId).innerHTML = obsah;
+        }catch(err){
+          document.getElementById(targetId).innerHTML = `<span class=muted>Chyba načítání: ${escapeHtml(err.message)}</span>`;
+        }
+      }
+
+      function loadAll(){
+        loadOne(urls[0], "box1");
+        loadOne(urls[1], "box2");
+        loadOne(urls[2], "box3");
+      }
+
+      loadAll();
+      setInterval(loadAll, 10000); // obnov každých 10s
+
+    })();
+  </script>
+</body>
+</html>
