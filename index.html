@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Moje domovská stránka</title>
   <link rel="shortcut icon" href="i.ico">
+  
   <style>
     :root {
       --bg: #0b1020;
@@ -47,7 +48,7 @@
       transition: background 0.3s ease;
     }
     .card {
-      max-width: 1400px;
+      max-width: 1700px;
       width: 95%;
       margin: 20px auto 0;
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
@@ -70,6 +71,25 @@
       gap: 10px;
       margin-bottom: 20px;
     }
+    .full-link {
+      display: block;
+	  width: fit-content;             /* jen tak široké, jak je potřeba */
+	  margin: 0 auto;                 /* vystředí prvek */
+      padding: 10px 16px;
+      background: linear-gradient(180deg, #7db0ff, #4f86ff);
+      color: #0a1228;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .full-link:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+    .full-link:active {
+      transform: translateY(1px);
+    }
     select, input[type="text"], button {
       height: 48px;
       border-radius: 12px;
@@ -90,7 +110,7 @@
       color: #0a1228;
       border: none;
       cursor: pointer;
-      transition: transform 0.05s ease, filter 0.2s ease;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
     button:active { transform: translateY(1px); }
     .links {
@@ -98,6 +118,10 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
+    }
+	button:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
     }
     .links figure {
       margin: 0;
@@ -218,6 +242,8 @@
     </form>
     <p class="hint">Vyberte vyhledávač (myší nebo šipkami ↑↓) a napište dotaz.</p>
     <hr>
+	<a href="index_simple.html" class="full-link">Simple verze</a>
+	<hr>
 	<div class="links">
 	  <figure><a href="https://www.ceskenoviny.cz/"><img src="ctk.jpg" alt="ctk"></a><figcaption>ČTK</figcaption></figure>
 	  <figure><a href="https://www.idnes.cz/"><img src="idnes.png" alt="idnes"></a><figcaption>iDnes</figcaption></figure>
