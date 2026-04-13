@@ -28,6 +28,9 @@
 	  /*modrá*/
 	  --cat-bg4: linear-gradient(180deg, rgba(50,130,246,0.5), rgba(255,255,255,0.3));
 	  --cat-border4: rgba(50,130,246,1);
+	  /*fialová*/
+	  --cat-bg5: linear-gradient(180deg, rgba(163,73,164,0.5), rgba(255,255,255,0.3));
+	  --cat-border5: rgba(163,73,164,1);
     }
 
     body[data-theme="light"] {
@@ -320,7 +323,7 @@
 	
 	<div class="categories-wrapper">
       <div class="categories-left">
-        <div class="category" style="--cat-bg: var(--cat-bg2); --cat-border: var(--cat-border2); margin-right: 50px;">
+        <div class="category" style="--cat-bg: var(--cat-bg2); --cat-border: var(--cat-border2); margin-right: 0px;">
           <h2>Zprávy</h2>
           <div class="links">
             <a href="https://www.ceskenoviny.cz/">ČTK</a>
@@ -335,11 +338,12 @@
             <a href="https://www.meteopress.cz/radar/#8/49.852/15.513">Meteoradar</a>
             <a href="https://www.seznam.cz/">Seznam</a>
             <a href="https://www.webmium.com/cs-cz/prihlasit">Webmium</a>
+			<a href="https://github.com/repos?q=owner%3A%40me">GitHub</a>
+			<a href="https://www.qrcode-monkey.com/#">QR Code Monkey</a>
+			<a href="https://qrgenerator.cz/">QR generátor/čtečka</a>
           </div>
         </div>
-      </div>
-      <div class="categories-right">
-        <div class="category" style="--cat-bg: var(--cat-bg3); --cat-border: var(--cat-border3); margin-right: 200px;">
+        <div class="category" style="--cat-bg: var(--cat-bg3); --cat-border: var(--cat-border3); margin-right: 0px;">
           <h2>Finance</h2>
           <div class="links">
             <a href="https://bezpecnost.csas.cz/flfe/?client_id=georgeclient_cz">George</a>
@@ -363,7 +367,7 @@
     <hr>
 	
 	<div class="categories-wrapper">
-      <div class="categories-center">
+      <div class="categories-left">
         <div class="category" style="--cat-bg: var(--cat-bg1); --cat-border: var(--cat-border1); margin-right: 0px;">
           <h2>Práce</h2>
           <div class="links">
@@ -372,12 +376,26 @@
             <a href="https://swnastroj.zat.cz/WebDukovany/WebPrihlaseni">NU/LU</a>
             <a href="https://vyvoj.zat.lan/">Vývoj.zat.lan</a>
             <a href="https://gitlab.zat.lan/">GitLab.zat.lan</a>
-            <a href="https://github.com/repos?q=owner%3A%40me">GitHub</a>
             <a href="https://mujdelirest.cz/CS/auth/login">Můj Delirest</a>
             <a href="https://defshare.zat.cz/">DEFShare</a>
             <a href="https://soika.zat.lan/Account/Login/">Soika</a>
             <a href="https://zatas.sharepoint.com/sites/ZATpoint">ZAT Point</a>
             <a href="https://myapps.microsoft.com/">Office365</a>
+          </div>
+        </div>
+		<div class="category" style="--cat-bg: var(--cat-bg5); --cat-border: var(--cat-border5); margin-right: 0px;">
+          <h2>IFS Cloud</h2>
+          <div class="links">
+            <a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/TimeRegistrationEmployee/TimeRegistrationMyPage">Docházka</a>
+            <a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/TravelExpensesEmployee/MyExpenses;$filter=StartDateTime%20ge%202023-01-01T00%3A00%3A00Z%20and%20StartDateTime%20le%202028-12-31T23%3A59%3A59Z;searchcontext=FromDate%3A2023-01-01%2CToDate%3A2028-12-31">Moje cestovní příkazy</a>
+            <a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/AbsenceEmployee/AbsenceRequestPlanPage">Můj kalendář absencí</a>
+            <a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/ProjectScopeAndSchedule/ProjectLevel">Rozsah a plán projektu (konta)</a>
+			<a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/ProjectResourcePlanning/ActivityLevel">Plánování zdrojů činnosti (lidi/hodiny)</a>
+			<a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/ProjectMonitoring/ActivityLevel">Sledování činnosti (rozsah činnosti)</a>
+			<a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/DocumentFolderNavigator/DocFolderPage">Navigátor složky dokumentů</a>
+			<a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/DocumentRevision/Form">Verze dokumentu</a>
+			<a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/EngineeringPartNavigator/Form">Navigátor pro konstrukční položku</a>
+			<a href="https://ifscloudzat.zat.cz/main/ifsapplications/web/page/EngineeringPartRevisions/List">Verze konstrukčních položek</a>
           </div>
         </div>
       </div>
