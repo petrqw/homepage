@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GitLab Projekty</title>
+<link rel="shortcut icon" href="i.ico">
+
+<style>
+    :root {
+        --bg: #0f172a;
+        --panel: #1e293b;
+        --hover: #334155;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --border: #475569;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 30px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        margin-top: 0;
+        color: white;
+    }
+
+    .topbar {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+    .search {
+        flex: 1;
+        min-width: 250px;
+        max-width: 500px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: white;
+        font-size: 15px;
+    }
+
+    button {
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    button:hover {
+        background: var(--hover);
+    }
+
+    .tree {
+        background: var(--panel);
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+    }
+
+    details {
+        margin-left: 25px;
+    }
+
+    summary {
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 8px;
+        transition: background 0.2s;
+        list-style: none;
+        position: relative;
+    }
+
+    summary:hover {
+        background: var(--hover);
+    }
+
+    summary::before {
+        content: "▶";
+        position: absolute;
+        left: -12px;
+        top: 7px;
+        font-size: 11px;
+        transition: transform 0.2s;
+        color: var(--muted);
+    }
+
+    details[open] > summary::before {
+        transform: rotate(90deg);
+    }
+
+    a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .repo {
+        margin-left: 10px;
+        padding: 5px 10px;
+    }
+
+    .repo a {
+        color: #7dd3fc;
+    }
+
+    .path {
+        color: var(--muted);
+        font-size: 12px;
+        margin-left: 8px;
+    }
+
+    .hidden {
+        display: none;
+    }
+	
+	.title-icon {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        margin-right: 10px;
+	    position: relative;
+        top: -3px;
+        left: 0px;
+    }
+	
+	.nav-button {
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+		margin-bottom: 20px;
+    }
+
+    .nav-button:hover {
+        background: var(--hover);
+    }
+	
+</style>
+</head>
+
+<body>
+
+<h1><img src="zat_icon.png" class="title-icon">GitLab Projekty</h1>
+
+<button class="nav-button" onclick="location.href='index.html'">🏠 Domů - Full</button>
+<button class="nav-button" onclick="location.href='index_simple.html'">🏠 Domů - Simple</button>
+
+<div class="topbar">
+    <input
+        type="text"
+        class="search"
+        placeholder="Hledat projekt..."
+        id="search"
+    />
+
+    <button id="expandAll">
+        Rozbalit vše
+    </button>
+
+    <button id="collapseAll">
+        Sbalit vše
+    </button>
+</div>
+
+<div class="tree" id="tree">
+
+    <details open>
+        <summary>
+            <a href="https://gitlab.zat.lan/dashboard/groups">Groups</a>
+        </summary>
+
+        <details open>
+            <summary>
+                <a href="https://gitlab.zat.lan/edi">EDI</a>
+            </summary>
+
+            <details open>
+                <summary>
+                    <a href="https://gitlab.zat.lan/edi/edu">EDU</a>
+                </summary>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/edi/edu/b1">B1</a>
+                    </summary>
+
+                    <details open>
+                        <summary>
+                            <a href="https://gitlab.zat.lan/edi/edu/b1/rsbe">RSBE</a>
+                        </summary>
+
+                        <div class="repo">
+                            📦️<a href="https://gitlab.zat.lan/edi/EDU/b1/rsbe/83">83</a>
+                            <span class="path">/EDI/EDU/B1/RSBE/83</span>
+                        </div>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b1/rsbe/93">93</a>
+                            <span class="path">/EDI/EDU/B1/RSBE/93</span>
+                        </div>
+                    </details>
+                </details>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/edi/edu/b2">B2</a>
+                    </summary>
+
+                    <details open>
+                        <summary>
+                            <a href="https://gitlab.zat.lan/edi/edu/b2/rsbe">RSBE</a>
+                        </summary>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b2/rsbe/83">83</a>
+                            <span class="path">/EDI/EDU/B2/RSBE/83</span>
+                        </div>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b2/rsbe/93">93</a>
+                            <span class="path">/EDI/EDU/B2/RSBE/93</span>
+                        </div>
+                    </details>
+                </details>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/edi/edu/b3">B3</a>
+                    </summary>
+
+                    <details open>
+                        <summary>
+                            <a href="https://gitlab.zat.lan/edi/edu/b3/rsbe">RSBE</a>
+                        </summary>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b3/rsbe/83">83</a>
+                            <span class="path">/EDI/EDU/B3/RSBE/83</span>
+                        </div>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b3/rsbe/93">93</a>
+                            <span class="path">/EDI/EDU/B3/RSBE/93</span>
+                        </div>
+                    </details>
+                </details>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/edi/edu/b4">B4</a>
+                    </summary>
+
+                    <details open>
+                        <summary>
+                            <a href="https://gitlab.zat.lan/edi/edu/b4/rsbe">RSBE</a>
+                        </summary>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b4/rsbe/83">83</a>
+                            <span class="path">/EDI/EDU/B4/RSBE/83</span>
+                        </div>
+
+                        <div class="repo">
+                            📦<a href="https://gitlab.zat.lan/edi/EDU/b4/rsbe/93">93</a>
+                            <span class="path">/EDI/EDU/B4/RSBE/93</span>
+                        </div>
+                    </details>
+                </details>
+
+            </details>
+        </details>
+
+        <details open>
+            <summary>
+                <a href="https://gitlab.zat.lan/safety">Safety</a>
+            </summary>
+
+            <details open>
+                <summary>
+                    <a href="https://gitlab.zat.lan/safety/edu">EDU</a>
+                </summary>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/safety/edu/b1">B1</a>
+                    </summary>
+
+                    <div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/11_rsbb_po_z100">11_RSBB_PO_Z100</a>
+                        <span class="path">/Safety/EDU/B1/11_RSBB_PO_Z100</span>
+                    </div>
+					
+					<div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/12_rsbb_n_po_z200">12_RSBB_N_PO_Z200</a>
+                        <span class="path">/Safety/EDU/B1/12_RSBB_N_PO_Z200</span>
+                    </div>
+					
+					<div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/22_rsbb_n_so_z200">22_RSBB_N_SO_Z200</a>
+                        <span class="path">/Safety/EDU/B1/22_RSBB_N_SO_Z200</span>
+                    </div>
+					
+					<div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/30_rsbp_1_2_3_z100">30_RSBP_1_2_3_Z100</a>
+                        <span class="path">/Safety/EDU/B1/30_RSBP_1_2_3_Z100</span>
+                    </div>
+					
+					<div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/31_rsbp_1_2_3_z100">31_RSBP_1_2_3_Z100</a>
+                        <span class="path">/Safety/EDU/B1/31_RSBP_1_2_3_Z100</span>
+                    </div>
+					
+					<div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/32_rsbp_1_2_3_n_z200">32_RSBP_1_2_3_N_Z200</a>
+                        <span class="path">/Safety/EDU/B1/32_RSBP_1_2_3_N_Z200</span>
+                    </div>
+
+                    <div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/41_rsbs_1_2_3_z100">41_RSBS_1_2_3_Z100</a>
+                        <span class="path">/Safety/EDU/B1/41_RSBS_1_2_3_Z100</span>
+                    </div>
+					
+					<div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/42_rsbs_1_2_3_n_z200">42_RSBS_1_2_3_N_Z200</a>
+                        <span class="path">/Safety/EDU/B1/42_RSBS_1_2_3_N_Z200</span>
+                    </div>
+
+                    <div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/b1/80_kom">80_KOM</a>
+                        <span class="path">/Safety/EDU/B1/80_KOM</span>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/safety/edu/kvalifikace">Kvalifikace</a>
+                    </summary>
+
+                    <div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/kvalifikace/ks89_z200">KS89_Z200</a>
+                        <span class="path">/Safety/EDU/Kvalifikace/KS89_Z200</span>
+                    </div>
+
+                    <div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/kvalifikace/ks91_z200">KS91_Z200</a>
+                        <span class="path">/Safety/EDU/Kvalifikace/KS91_Z200</span>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>
+                        <a href="https://gitlab.zat.lan/safety/edu/testovani">Testování</a>
+                    </summary>
+
+                    <div class="repo">
+                        📦<a href="https://gitlab.zat.lan/safety/edu/testovani/22_rsbb_n_so_z200_test">22_RSBB_N_SO_Z200_TEST</a>
+                        <span class="path">/Safety/EDU/Testování/22_RSBB_N_SO_Z200_TEST</span>
+                    </div>
+                </details>
+
+            </details>
+        </details>
+
+    </details>
+
+</div>
+
+<script>
+
+const searchInput = document.getElementById("search");
+
+const allDetails = document.querySelectorAll("details");
+
+const initialStates = new Map();
+
+allDetails.forEach(detail => {
+    initialStates.set(detail, detail.open);
+});
+
+searchInput.addEventListener("input", () => {
+
+    const filter = searchInput.value
+        .toLowerCase()
+        .trim();
+
+    // prázdné hledání -> obnov původní stav
+    if (filter === "") {
+
+        document.querySelectorAll(".repo")
+            .forEach(repo => {
+                repo.classList.remove("hidden");
+            });
+
+        allDetails.forEach(detail => {
+            detail.open = initialStates.get(detail);
+        });
+
+        return;
+    }
+
+    // při hledání otevři vše
+    allDetails.forEach(detail => {
+        detail.open = true;
+    });
+
+    document.querySelectorAll(".repo")
+        .forEach(repo => {
+
+            const text = repo.textContent.toLowerCase();
+
+            const match = text.includes(filter);
+
+            repo.classList.toggle("hidden", !match);
+        });
+});
+
+document.getElementById("expandAll")
+.addEventListener("click", () => {
+
+    allDetails.forEach(detail => {
+        detail.open = true;
+    });
+});
+
+document.getElementById("collapseAll")
+.addEventListener("click", () => {
+
+    allDetails.forEach(detail => {
+        detail.open = false;
+    });
+});
+
+</script>
+
+</body>
+</html>
